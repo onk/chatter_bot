@@ -33,7 +33,7 @@ module ChatterBot
             hash["parent_id"] = parent.id
           end
         when "attachment"
-          if v
+          if v && v["id"]
             attachment = Attachment.find_or_create_by_raw_hash(v)
             hash["attachment_id"] = attachment.id
           end
