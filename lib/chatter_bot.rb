@@ -1,3 +1,9 @@
+require "chatter_bot/version"
+
+require "active_record"
+require "pit"
+require "databasedotcom"
+
 require "chatter_bot/model"
 require "chatter_bot/attachment"
 require "chatter_bot/like"
@@ -36,7 +42,4 @@ module ChatterBot
     p "========================================================================="
   end
 end
-
-ChatterBot.setup
-ChatterBot.main
 
