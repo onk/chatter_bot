@@ -31,7 +31,7 @@ module ChatterBot
 
   def self.main
     feed_items = Databasedotcom::Chatter::CompanyFeed.find(@client)
-    feed_items.each do |feed_item|
+    feed_items.reverse.each do |feed_item|
       db_feed_item = FeedItem.find_by_chatter_id(feed_item.id)
       unless db_feed_item
         p "#{feed_item.raw_hash["actor"]["name"]}: #{feed_item.raw_hash["body"]["text"]}"
