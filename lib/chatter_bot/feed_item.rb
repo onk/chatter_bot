@@ -1,6 +1,9 @@
 module ChatterBot
   class FeedItem < ActiveRecord::Base
     include Model
+    belongs_to :parent, polymorphic: true
+    belongs_to :actor, class_name: "ChatterBot::User", foreign_key: :actor_id
+
     def self.find_or_create_parent(raw_hash)
       if raw_hash["parent"]
         if raw_hash["parent"] == raw_hash["actor"]
@@ -54,6 +57,14 @@ module ChatterBot
         end
       }
       FeedItem.create(hash)
+    end
+
+    def notify
+      puts "------------------------------------------------------------------------"
+      if parent.is_a?(Group)
+        puts parent.name + ":"
+      end
+      puts "#{self.actor.name}: #{self.text}"
     end
   end
 end

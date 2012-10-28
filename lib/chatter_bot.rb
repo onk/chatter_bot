@@ -34,8 +34,8 @@ module ChatterBot
     feed_items.reverse.each do |feed_item|
       db_feed_item = FeedItem.find_by_chatter_id(feed_item.id)
       unless db_feed_item
-        p "#{feed_item.raw_hash["actor"]["name"]}: #{feed_item.raw_hash["body"]["text"]}"
-        FeedItem.create_by_raw_hash(feed_item.raw_hash)
+        db_feed_item = FeedItem.create_by_raw_hash(feed_item.raw_hash)
+        db_feed_item.notify
       end
     end
   end
