@@ -56,6 +56,7 @@ module ChatterBot
           hash[k] = v
         end
       }
+      hash[:raw_hash] = raw_hash
       FeedItem.create(hash)
     end
 
